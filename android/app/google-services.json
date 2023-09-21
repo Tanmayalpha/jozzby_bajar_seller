@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "799915125914",
+    "project_id": "jozzby-bazaar",
+    "storage_bucket": "jozzby-bazaar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799915125914:android:2ae098921f1ddc54508323",
+        "android_client_info": {
+          "package_name": "jozzbybazaar.seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799915125914-bo5mfb5uq0g42gu1n5mpqj1rlm29sjrr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jozzbybazaar.seller",
+            "certificate_hash": "50db89e8e4e74e3d83c23164f022bbf9bd248c3d"
+          }
+        },
+        {
+          "client_id": "799915125914-5vpf2tsnchv5e64cmpvlnulgo4bovmko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCumhKVPDQ85PlUbpIoqT9lRRO2W7e8cgA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799915125914-5vpf2tsnchv5e64cmpvlnulgo4bovmko.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

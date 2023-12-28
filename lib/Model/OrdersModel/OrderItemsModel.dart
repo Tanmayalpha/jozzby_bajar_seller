@@ -3,6 +3,7 @@ import 'package:sellermultivendor/Widget/parameterString.dart';
 class OrderItem {
   String? id,
       name,
+
       qty,
       price,
       subTotal,
@@ -28,6 +29,8 @@ class OrderItem {
       email,
       deliverBy,
       otp,
+  identity,
+  reson,
       pickUpLocation;
 
   List<String?>? listStatus = [];
@@ -36,6 +39,8 @@ class OrderItem {
   OrderItem(
       {this.qty,
       this.id,
+        this.identity,
+        this.reson,
       this.name,
       this.price,
       this.subTotal,
@@ -75,6 +80,8 @@ class OrderItem {
     }
     return OrderItem(
         id: json[Id],
+        identity: json['cancel_identity'],
+        reson: json['cancel_reason'],
         qty: json[Quantity],
         name: json[Name],
         activeStatus: json[ActiveStatus],

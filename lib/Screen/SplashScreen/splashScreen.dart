@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
             width: double.infinity,
             height: double.infinity,
             //decoration: DesignConfiguration.back(),
-            decoration: BoxDecoration(gradient:
+            decoration: const BoxDecoration(gradient:
 
 
             LinearGradient(

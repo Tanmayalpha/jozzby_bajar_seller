@@ -321,6 +321,16 @@ Future<void> manageStockDialog(
                               style: const TextStyle(color: red),
                             )
                           : Container(),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 0.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Manage Stock : "),
+                            SwitchWidget(),
+                          ],
+                        ),
+                      ),
                       SimBtn(
                         onBtnSelected: () {
                           if (addValue == null) {
@@ -336,7 +346,9 @@ Future<void> manageStockDialog(
                             setState(() {});
                             Navigator.pop(ctx);
                             stockManagementProvider!.setStockValue(
+                              instock,
                               variantId,
+
                               context,
                               addValue!,
                               controllerForStock.text.toString(),
@@ -357,4 +369,62 @@ Future<void> manageStockDialog(
       );
     },
   );
+}
+
+class SwitchWidget extends StatefulWidget {
+  @override
+  SwitchWidgetClass createState() =>  SwitchWidgetClass();
+}
+bool instock = true ;
+class SwitchWidgetClass extends State {
+
+  bool switchControl = false;
+  var textHolder = 'Switch is OFF';
+
+  void toggleSwitch(bool value) {
+
+    if(switchControl == false)
+    {
+      setState(() {
+        switchControl = true;
+        textHolder = 'Switch is ON';
+        instock = true ;
+      });
+      print('Switch is ON');
+      // Put your code here which you want to execute on Switch ON event.
+
+    }
+    else
+    {
+      setState(() {
+        switchControl = false;
+        instock = false ;
+
+        textHolder = 'Switch is OFF';
+      });
+      print('Switch is OFF');
+      // Put your code here which you want to execute on Switch OFF event.
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[ Transform.scale(
+            scale: 1,
+            child: Switch(
+              onChanged: toggleSwitch,
+              value: switchControl,
+              activeColor: primary,
+              activeTrackColor: newPrimary,
+              inactiveThumbColor: Colors.white,
+              inactiveTrackColor: Colors.grey,
+            )
+        ),
+
+          //Text('$textHolder', style: TextStyle(fontSize: 24),)
+
+        ]);
+  }
 }

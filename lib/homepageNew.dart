@@ -201,7 +201,7 @@ bool isGoingUp = false;
           },
 
           child: Container(
-              height: MediaQuery.of(context).size.height / 1,
+              //height: MediaQuery.of(context).size.height / 1,
               child: ListWheelScrollView.useDelegate(
                   controller: _controller,
                   diameterRatio: 9,

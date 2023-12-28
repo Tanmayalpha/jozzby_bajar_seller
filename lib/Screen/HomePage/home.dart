@@ -311,8 +311,11 @@ class _HomeState extends State<Home>
       context.read<SettingProvider>().CUR_USERID = await getPrefrence(Id);
       var parameter = {Id: context.read<SettingProvider>().CUR_USERID};
       ApiBaseHelper().postAPICall(getSellerDetailsApi, parameter).then(
+
         (getdata) async {
           bool error = getdata["error"];
+          print('_____parameter______${getSellerDetailsApi}______${parameter}____');
+
           if (!error) {
             var data = getdata["data"][0];
             if (data["status"] != "1") {
@@ -650,16 +653,16 @@ class _HomeState extends State<Home>
                                     child: Row(
                                       children: [
                                         boxesDesingHome(
-                                          'Balance',
-                                          getTranslated(
-                                              context, 'BALANCE_LBL')!,
+                                          'Balance', 'Overall Sales'
+                                          /*getTranslated(
+                                              context, 'BALANCE_LBL')!*/,
                                           DesignConfiguration.getPriceFormat(
                                               context,
                                               double.parse(CUR_BALANCE))!,
                                           0,
                                           context,
                                         ),
-                                        boxesDesingHome(
+                                        /*boxesDesingHome(
                                           'Report',
                                           getTranslated(
                                               context, 'Sales Report')!,
@@ -669,7 +672,7 @@ class _HomeState extends State<Home>
                                                   .grandFinalTotalOfSales)),
                                           1,
                                           context,
-                                        ),
+                                        ),*/
                                       ],
                                     ),
                                   ),
@@ -702,7 +705,7 @@ class _HomeState extends State<Home>
                                   // getChart(),
                                   // catChart(value, context, setStateNow),
                                   Container(
-                                    height: MediaQuery.of(context).size.height/2.2,
+                                    height: MediaQuery.of(context).size.height/1.55,
                                     child:
                                     orderListProvider?.orderList==null
 

@@ -65,6 +65,7 @@ const String SHIPED = 'shipped';
 const String PROCESSED = 'processed';
 const String DELIVERD = 'delivered';
 const String CANCLED = 'cancelled';
+const String REQUESTCANCLED = 'Request For Cancel';
 const String RETURNED = 'returned';
 const String WAITING = 'awaiting';
 const String AttrName = 'attr_name';

@@ -22,7 +22,7 @@ class LoginProvider extends ChangeNotifier {
     Function updateNow,
   ) async {
     var data = {
-      Mobile: mobile,
+      'email': mobile,
       Password: password,
     };
 

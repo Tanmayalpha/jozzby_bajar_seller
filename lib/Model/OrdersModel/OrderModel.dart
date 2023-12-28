@@ -60,6 +60,7 @@ class Order_Model {
       rtnReqSubmitted,
       otp,
       email,
+      identity,
       // deliveryBoyId,
       invoice,
       delDate,
@@ -91,6 +92,7 @@ class Order_Model {
     this.orderDate,
     this.dateTime,
     this.email,
+    this.identity,
     this.itemList,
     this.listStatus,
     this.listDate,
@@ -127,6 +129,7 @@ class Order_Model {
 
     return Order_Model(
       id: parsedJson[Id],
+      identity: parsedJson['cancel_identity'],
       name: parsedJson[Username],
       mobile: parsedJson[Mobile],
       delCharge: parsedJson[DeliveryCharge],

@@ -374,17 +374,17 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               color: black.withOpacity(0.7),
               fontWeight: FontWeight.bold,
               fontSize: textFontSize13),
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.emailAddress,
           controller: mobileController,
           focusNode: monoFocus,
           textInputAction: TextInputAction.next,
-          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+         // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 13,
                 vertical: 5,
               ),
-              hintText: getTranslated(context, "Mobile Number")!,
+              hintText: getTranslated(context, "Email")!,
               hintStyle: TextStyle(
                   color: black.withOpacity(0.3),
                   fontWeight: FontWeight.bold,
@@ -486,17 +486,17 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.only(top: 60),
-      child: ColorFiltered(
-        colorFilter: const ColorFilter.mode(primary, BlendMode.srcIn),
-        child: SvgPicture.asset(
-          DesignConfiguration.setSvgPath('loginlogo'),
-          alignment: Alignment.center,
-          height: 90,
-          width: 90,
-          fit: BoxFit.contain,
-
-        ),
-      ),
+      child: Image.asset("assets/images/PNG/homelogo1.png", height: 110, width: 110,)
+      // ColorFiltered(
+      //   colorFilter: const ColorFilter.mode(primary, BlendMode.srcIn),
+      //   child: SvgPicture.asset(
+      //     DesignConfiguration.setSvgPath('loginlogo'),
+      //     alignment: Alignment.center,
+      //     height: 90,
+      //     width: 90,
+      //     fit: BoxFit.contain,
+      //   ),
+      // ),
     );
     Positioned(
       left: (MediaQuery.of(context).size.width / 2) - 50,

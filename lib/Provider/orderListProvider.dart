@@ -133,6 +133,7 @@ class OrderListProvider extends ChangeNotifier {
           if (scrollOffset == 0) scrollNodata = error;
           if (!error) {
             all = result["total"];
+            print('___________${result["total"]}__________');
             received = result["received"];
             processed = result["processed"];
             shipped = result["shipped"];
@@ -146,7 +147,7 @@ class OrderListProvider extends ChangeNotifier {
               tempList = (data as List)
                   .map((data) => Order_Model.fromJson(data))
                   .toList();
-
+              print('__ddd_________${tempList.length}__________');
               orderList.addAll(tempList);
               scrollLoadmore = true;
               scrollOffset = scrollOffset + perPage;

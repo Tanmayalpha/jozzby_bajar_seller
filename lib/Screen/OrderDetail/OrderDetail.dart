@@ -10,6 +10,10 @@ import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:sellermultivendor/Helper/Color.dart';
+import 'package:sellermultivendor/Helper/Color.dart';
+import 'package:sellermultivendor/Helper/Color.dart';
+import 'package:sellermultivendor/Helper/Color.dart';
+import 'package:sellermultivendor/Helper/Color.dart';
 import 'package:sellermultivendor/Screen/OrderDetail/Widget/ParcelBreadth.dart';
 import 'package:sellermultivendor/Screen/OrderDetail/Widget/ParcelHeight.dart';
 import 'package:sellermultivendor/Screen/OrderDetail/Widget/ParcelLength.dart';
@@ -82,12 +86,13 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
       courierAgency,
       trackingId;
   List<String> statusList = [
-    PLACED,
+    //PLACED,
     PROCESSED,
     SHIPED,
-    DELIVERD,
-    CANCLED,
-    RETURNED,
+   // DELIVERD,
+    REQUESTCANCLED,
+    //CANCLED
+   // RETURNED,
   ];
 
   List<String> digitalList = [
@@ -400,7 +405,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  FloatingActionButton.small(
+                  /*FloatingActionButton.small(
                     backgroundColor: white,
                     onPressed: () async {
                       String text =
@@ -447,7 +452,7 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                       color: primary,
                       size: 20,
                     ),
-                  ),
+                  ),*/
                   const SizedBox(
                     height: 05,
                   ),
@@ -784,6 +789,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                                     () {
                                                       curSelectedStatus =
                                                           newValue;
+                                                      print(
+                                                          '___________${curSelectedStatus}__________');
                                                       /* orderItem
                                                               .curSelected =
                                                           newValue;
@@ -982,10 +989,11 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                                           right: 8.0),
                                                   child: InkWell(
                                                     onTap: () {
+
                                                       if (curSelectedStatus !=
-                                                              null &&
+                                                              null /*&&
                                                           selectedDelBoy !=
-                                                              null) {
+                                                              null*/) {
                                                         if ((curSelectedStatus ==
                                                                     "cancelled" ||
                                                                 curSelectedStatus ==
@@ -997,7 +1005,64 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
                                                                   context,
                                                                   'Select square box of item only when you want to update it as cancelled or returned.')!,
                                                               context);
-                                                        } else {
+                                                        } else if (curSelectedStatus == 'Request For Cancel') {
+                                                          showDialog(
+                                                            context: context,
+                                                            builder: (BuildContext context) {
+                                                              return AlertDialog(
+                                                                title: const Text(
+                                                                  'Request For cancel',
+                                                                  style: TextStyle(
+                                                                      color: black),
+                                                                ),
+                                                                content: Column(
+                                                                  mainAxisSize: MainAxisSize.min,
+                                                                  children: [
+                                                                    const Text(
+                                                                      'Would you like to cancel this product?',
+                                                                      style: TextStyle(
+                                                                        color: black,
+                                                                      ),
+                                                                    ),
+                                                                    cancelReasonField()
+                                                                  ],),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    child: const Text(
+                                                                      'YES',
+                                                                      style: TextStyle(
+                                                                          color: primary),
+                                                                    ),
+                                                                    onPressed: () {
+
+                                                                      if(cancelReasonController.text.isEmpty){
+                                                                        setSnackbar('Please enter cancel reason!', context);
+
+                                                                      }else {
+                                                                        updateOrder();
+                                                                      }
+
+                                                                      Navigator.pop(context);
+
+
+                                                                    },
+                                                                  ),
+                                                                  TextButton(
+                                                                    child: const Text(
+                                                                      'NO',
+                                                                      style: TextStyle(
+                                                                          color: primary),
+                                                                    ),
+                                                                    onPressed: () {
+                                                                      Routes.pop(context);
+                                                                    },
+                                                                  )
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+
+                                                        }else{
                                                           updateOrder();
                                                         }
                                                       } else {
@@ -1454,8 +1519,48 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
             ),
     );
   }
+final cancelReasonController = TextEditingController();
+Widget cancelReasonField() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 40),
+    child: Container(
+      height: 53,
+      width: double.maxFinite,
+      decoration: BoxDecoration(
+        color: lightWhite,
+        borderRadius: BorderRadius.circular(circularBorderRadius10),
+      ),
+      alignment: Alignment.center,
+      child: TextFormField(
+        maxLines: 4,
+        style: TextStyle(
+            color: black,
+            fontWeight: FontWeight.bold,
+            fontSize: textFontSize13),
+        keyboardType: TextInputType.text,
+        textCapitalization: TextCapitalization.words,
+        controller: cancelReasonController,
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 13,
+              vertical: 5,
+            ),
+            hintText: 'Cancel Reason',
+            hintStyle: TextStyle(
+                color:
+                lightBlack,
+                fontWeight: FontWeight.bold,
+                fontSize: textFontSize13),
+            fillColor: lightWhite,
+            border: InputBorder.none),
+      ),
+    ),
+  );
+}
 
-  Future<void> createShipRocketParcelDialog() async {
+
+Future<void> createShipRocketParcelDialog() async {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -2928,10 +3033,13 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
             STATUS: curSelectedStatus,
             SellerId: context.read<SettingProvider>().CUR_USERID
           };
-          if ((curSelectedStatus == "cancelled" ||
-                  curSelectedStatus == "returned") &&
-              orderItemIds.isNotEmpty) {
-            parameter[ORDERITEMID] = orderItemIds.join(",");
+          if ((curSelectedStatus == "Request For Cancel" ||
+                  curSelectedStatus == "returned")) {
+            parameter[ORDERITEMID] = model!.itemList!.map((item) => item.id).join(',');
+          }
+          if (curSelectedStatus == 'Request For Cancel') {
+            parameter['cancel_reason'] = cancelReasonController.text;
+            parameter[STATUS] = CANCLED;
           }
 
           // if (orderItemIds.isEmpty) {
@@ -2940,6 +3048,8 @@ class StateOrder extends State<OrderDetail> with TickerProviderStateMixin {
           if (selectedDelBoy != null) {
             parameter[DEL_BOY_ID] = searchList[selectedDelBoy!].id;
           }
+
+          print('___________${parameter}__________');
           ApiBaseHelper().postAPICall(updateOrderItemApi, parameter).then(
             (getdata) async {
               bool error = getdata["error"];

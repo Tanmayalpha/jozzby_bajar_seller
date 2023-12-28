@@ -125,6 +125,7 @@ class StockProviderProvider extends ChangeNotifier {
   }
 
   Future<void> setStockValue(
+      bool isStock ,
     String productVariantIdValue,
     BuildContext context,
     bool isAddValue,
@@ -138,6 +139,7 @@ class StockProviderProvider extends ChangeNotifier {
         Quantity: quanntity,
         Type: isAddValue ? 'add' : 'subtract',
         'current_stock': currentStock,
+        'availability' : isStock ? '1' : '0'
       };
 
       var result =

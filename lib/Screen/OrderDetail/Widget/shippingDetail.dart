@@ -121,7 +121,7 @@ class ShippingDetail extends StatelessWidget {
                         fontStyle: FontStyle.normal,
                       ),
                     ),
-                    InkWell(
+                    /*InkWell(
                       onTap: _launchCaller,
                       child: Row(
                         children: [
@@ -146,7 +146,7 @@ class ShippingDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                    )
+                    )*/
                   ],
                 ),
               ),

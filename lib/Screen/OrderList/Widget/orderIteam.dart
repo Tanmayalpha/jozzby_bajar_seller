@@ -56,9 +56,13 @@ class OrderIteam extends StatelessWidget {
       back = Colors.red;
     } else if (model.itemList![0].status! == 'return_request_pending') {
       back = Colors.indigo.withOpacity(0.85);
-    } else {
+    } else if(model.itemList![0].identity !=null  && model.itemList![0].identity == 'seller'){
+      back = Colors.blueAccent;
+    } else{
       back = Colors.cyan;
     }
+    print('___________${model.itemList![0].activeStatus}__________');
+    print('___________${model.itemList![0].identity}____gggg______');
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),
       child: Container(
@@ -105,6 +109,7 @@ class OrderIteam extends StatelessWidget {
                     ),
                     const Spacer(),
                     Container(
+                      width:  model.itemList![0].identity != 'seller' ? 120 : 170,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 2),
                       decoration: BoxDecoration(
@@ -118,7 +123,7 @@ class OrderIteam extends StatelessWidget {
                       child: Text(
                         () {
                           if (StringValidation.capitalize(model.itemList![0].activeStatus!) ==
-                              "Received") {
+                              "Received" && model.itemList![0].identity != 'seller') {
                             return getTranslated(context, "RECEIVED_LBL")!;
                           } else if (StringValidation.capitalize(model.itemList![0].activeStatus!) ==
                               "Processed") {
@@ -158,11 +163,15 @@ class OrderIteam extends StatelessWidget {
                               "Return_request_decline") {
                             return getTranslated(
                                 context, "RETURN_REQUEST_DECLINE_LBL")!;
-                          } else {
+                          } else if(model.itemList![0].identity !=null  && model.itemList![0].identity == 'seller'){
+                            return 'Request has been sent to admin for cancellation.';
+                          } else if(model.itemList![0].identity !=null  && model.itemList![0].identity == 'seller'){
+                            return 'Request has been sent to admin for cancellation.';
+                          }else{
                             return StringValidation.capitalize(
                                 model.itemList![0].activeStatus!);
                           }
-                        }(),
+                        }(),textAlign: TextAlign.center,
                         style: const TextStyle(color: white),
                       ),
                     )
@@ -197,7 +206,7 @@ class OrderIteam extends StatelessWidget {
                         ],
                       ),
                     ),
-                    customerViewPermission
+                    /*customerViewPermission
                         ? InkWell(
                             child: Row(
                               children: [
@@ -219,7 +228,7 @@ class OrderIteam extends StatelessWidget {
                               _launchCaller(model.mobile!);
                             },
                           )
-                        : const SizedBox.shrink()
+                        : const SizedBox.shrink()*/
                   ],
                 ),
               ),

@@ -120,8 +120,19 @@ class PriceDetail extends StatelessWidget {
                             fontSize: textFontSize10,
                           ),
                     ),
-                    Text(
-                      "+ ${DesignConfiguration.getPriceFormat(context, double.parse(tempList[0].taxAmt!))!}",
+                    tempList[0].taxAmt== ''
+                        ? Text(
+                      "+ ${DesignConfiguration.getPriceFormat(context, double.parse('0.0'))!}",
+                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        color: black,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "PlusJakartaSans",
+                        fontStyle: FontStyle.normal,
+                        fontSize: textFontSize10,
+                      ),
+                    )
+                        :Text(
+                      "+ ${DesignConfiguration.getPriceFormat(context, double.parse(tempList[0].taxAmt ?? '0.0'))!}",
                       style: Theme.of(context).textTheme.labelLarge!.copyWith(
                             color: black,
                             fontWeight: FontWeight.w400,

@@ -15,7 +15,7 @@ class OrderBasicDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 118,
+      height: 125,
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(circularBorderRadius5)),
@@ -119,29 +119,53 @@ class OrderBasicDetail extends StatelessWidget {
             ),
             if (model!.itemList![0].otp != "0")
               Row(
-                children: [
-                  Text(
-                    "${getTranslated(context, "Otp")!} - ",
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          color: grey3,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "PlusJakartaSans",
-                          fontStyle: FontStyle.normal,
-                          fontSize: textFontSize14,
-                        ),
+              children: [
+                Text(
+                  "${getTranslated(context, "Otp")!} - ",
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: grey3,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "PlusJakartaSans",
+                    fontStyle: FontStyle.normal,
+                    fontSize: textFontSize14,
                   ),
-                  Text(
-                    model!.itemList![0].otp!,
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontFamily: 'PlusJakartaSans',
-                          color: black,
-                          fontSize: textFontSize14,
-                          fontWeight: FontWeight.w400,
-                          fontStyle: FontStyle.normal,
-                        ),
+                ),
+                Text(
+                  model!.itemList![0].otp!,
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontFamily: 'PlusJakartaSans',
+                    color: black,
+                    fontSize: textFontSize14,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
+            model!.itemList![0].reson  == '' ||model!.itemList![0].reson == null  ? SizedBox() : Row(
+              children: [
+                Text(
+                  "Message - ",
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: grey3,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "PlusJakartaSans",
+                    fontStyle: FontStyle.normal,
+                    fontSize: textFontSize14,
+                  ),
+                ),
+                Text(
+                  model!.itemList![0].reson!,
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontFamily: 'PlusJakartaSans',
+                    color: black,
+                    fontSize: textFontSize14,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

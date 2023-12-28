@@ -444,10 +444,7 @@ class StateProfile extends State<Profile> with TickerProviderStateMixin {
                 TextButton(
                   child: Text(
                     getTranslated(context, "SAVE_LBL")!,
-                    style: Theme.of(this.context)
-                        .textTheme
-                        .titleSmall!
-                        .copyWith(color: primary, fontWeight: FontWeight.bold),
+                    style: Theme.of(this.context).textTheme.titleSmall!.copyWith(color: primary, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
                     final form = profileProvider!.formKey.currentState!;

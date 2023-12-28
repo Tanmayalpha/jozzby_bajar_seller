@@ -288,6 +288,7 @@ class ProfileProvider extends ChangeNotifier {
           setSnackbar(msg, context);
           isLoading = false;
         }
+        Navigator.pop(context);
       } on TimeoutException catch (_) {
         setSnackbar(
           getTranslated(context, 'somethingMSg')!,

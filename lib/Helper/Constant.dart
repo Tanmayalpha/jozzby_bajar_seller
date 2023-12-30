@@ -14,7 +14,7 @@ const String iosPackage = 'jozzbybazaar.seller';
 String defaultCountryCode = 'IN';
 
 //Add your secret key here to conncet app with admin panel .
-const String baseUrl = 'https://alphawizzserver.com/jozzby_bazar_new/seller/app/v1/api/'; //'https://admin.jossbuy.com/seller/app/v1/api/';
+const String baseUrl ='https://admin.jossbuy.com/seller/app/v1/api/';
 const String jwtKey = 'Add_Your_Jwtkey_here';
 
 //Time settings
